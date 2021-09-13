@@ -1,8 +1,5 @@
 apply plugin: 'java-library'
 
-group 'com.laonstory'
-version '0.0.1-SNAPSHOT'
-
 bootJar { enabled = false }
 jar { enabled = true }
 

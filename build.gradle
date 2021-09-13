@@ -16,7 +16,7 @@ ext {
     set('springCloudVersion', "2020.0.3")
 }
 
-group 'com.laonstory'
+group 'com.github.laon-public'
 version '0.0.1-SNAPSHOT'
 
 repositories {
