@@ -1,4 +1,5 @@
 apply plugin: 'java-library'
+apply plugin: 'maven-publish'
 
 bootJar { enabled = false }
 jar { enabled = true }
@@ -13,7 +14,7 @@ publishing {
         maven(MavenPublication) {
             groupId "com.github.laon-public"
             artifactId 'auth-spring-boot-authconfigure'
-            version '0.0.1'
+            version '0.0.7'
 
             from components.java
         }
