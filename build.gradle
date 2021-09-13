@@ -39,6 +39,11 @@ configure(subprojects.findAll {it.name != 'auth-provider'}) {
         }
     }
 
+    allprojects {
+        repositories {
+            maven { url "https://jitpack.io" }
+        }
+    }
 
     dependencyManagement {
         imports {
