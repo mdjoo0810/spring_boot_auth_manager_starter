@@ -71,5 +71,4 @@ configure(subprojects.findAll {it.name != 'auth-provider'}) {
         archives javadocJar
     }
 
-
 }
