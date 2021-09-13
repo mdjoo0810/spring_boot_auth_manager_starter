@@ -3,6 +3,9 @@ apply plugin: 'java-library'
 group 'com.laonstory'
 version '0.0.1-SNAPSHOT'
 
+bootJar { enabled = false }
+jar { enabled = true }
+
 dependencies {
     api project(":auth-spring-boot-authconfigure")
     api project(":auth-provider:jwt")
