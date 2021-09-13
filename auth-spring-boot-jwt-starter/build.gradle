@@ -1,5 +1,4 @@
 apply plugin: 'java-library'
-apply plugin: 'maven-publish'
 
 bootJar { enabled = false }
 jar { enabled = true }
@@ -7,16 +6,4 @@ jar { enabled = true }
 dependencies {
     api project(":auth-spring-boot-authconfigure")
     api project(":auth-provider:jwt")
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId "com.github.laon-public"
-            artifactId 'auth-spring-boot-jwt-starter'
-            version '0.0.7'
-
-            from components.java
-        }
-    }
 }

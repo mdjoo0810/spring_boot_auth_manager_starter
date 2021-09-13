@@ -10,17 +10,20 @@
     {
       "name": "jwt.refresh-validity-min-milliseconds",
       "type": "java.lang.Long",
-      "sourceType": "com.laonstory.oauth.autoconfigure.provider.jwt.JwtProperties"
+      "sourceType": "com.laonstory.oauth.autoconfigure.provider.jwt.JwtProperties",
+      "defaultValue": 251840000000
     },
     {
       "name": "jwt.secret-key",
       "type": "java.lang.String",
-      "sourceType": "com.laonstory.oauth.autoconfigure.provider.jwt.JwtProperties"
+      "sourceType": "com.laonstory.oauth.autoconfigure.provider.jwt.JwtProperties",
+      "defaultValue": "default"
     },
     {
       "name": "jwt.validity-min-milliseconds",
       "type": "java.lang.Long",
-      "sourceType": "com.laonstory.oauth.autoconfigure.provider.jwt.JwtProperties"
+      "sourceType": "com.laonstory.oauth.autoconfigure.provider.jwt.JwtProperties",
+      "defaultValue": 431990000
     }
   ],
   "hints": []
