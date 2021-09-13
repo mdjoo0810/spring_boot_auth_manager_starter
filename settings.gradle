@@ -1,0 +1,13 @@
+rootProject.name = 'spring-boot-oauth'
+
+include 'auth-provider:kakao'
+findProject(':auth-provider:kakao')?.name = 'kakao'
+
+include 'auth-provider:jwt'
+findProject(':auth-provider:jwt')?.name = 'jwt'
+
+include 'auth-spring-boot-core'
+include 'auth-spring-boot-authconfigure'
+include 'auth-spring-boot-jwt-starter'
+include 'sample'
+

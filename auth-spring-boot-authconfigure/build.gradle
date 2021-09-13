@@ -1,0 +1,9 @@
+apply plugin: 'java-library'
+
+bootJar { enabled = false }
+jar { enabled = true }
+
+dependencies {
+    api project(":auth-provider:jwt")
+//    implementation project(":auth-spring-boot-core")
+}
