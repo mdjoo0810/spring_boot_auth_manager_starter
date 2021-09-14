@@ -5,10 +5,12 @@ import com.laonstory.auth_provider.jwt.model.GenerateTokenOption;
 import com.laonstory.auth_provider.jwt.model.TokenModel;
 import com.laonstory.oauth.core.util.DateUtils;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Base64;
 import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -20,11 +22,12 @@ public class JwtTokenProvider implements InitializingBean {
 
   public JwtTokenProvider(String secretKey, long validityMinMilliseconds,
       long refreshValidityMinMilliseconds) {
-    this.secretKey = secretKey;
+    this.secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     this.validityMinMilliseconds = validityMinMilliseconds;
     this.refreshValidityMinMilliseconds = refreshValidityMinMilliseconds;
   }
 
+  // 토큰 발행
   public TokenModel getTokens(String uniqueParam) {
     GenerateTokenOption options = getGenerateTokenOptions(uniqueParam);
     TokenModel tokenModel = TokenModel.builder()
@@ -42,12 +45,36 @@ public class JwtTokenProvider implements InitializingBean {
     return tokenModel;
   }
 
+  // 유니크 파라미터 추출
+  public String getUniqueParam(String token) {
+    return Jwts.parser()
+        .setSigningKey(secretKey)
+        .parseClaimsJws(token)
+        .getBody()
+        .getSubject();
+  }
+
+  // Http Header 에서 토큰 추출
+  public String resolveToken(HttpServletRequest request) {
+    return request.getHeader("Authorization");
+  }
+
+  public boolean validateToken(String token) {
+    try {
+      Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+      return !claimsJws.getBody().getExpiration().before(new Date());
+    } catch (Exception e) {
+      log.info("validate token failed : {}", e.getMessage());
+      return false;
+    }
+  }
+
   private String createToken(Claims claims, Date now, Date expiration) {
     return Jwts.builder()
         .setClaims(claims)
         .setIssuedAt(now)
         .setExpiration(expiration)
-        .signWith(SignatureAlgorithm.HS256, Base64.getEncoder().encodeToString(secretKey.getBytes()))
+        .signWith(SignatureAlgorithm.HS256, secretKey)
         .compact();
   }
 
