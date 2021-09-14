@@ -19,7 +19,6 @@ publishing {
         mavenJava(MavenPublication) {
             groupId = 'com.github.laon-public.auth-provider'
             artifactId = 'jwt'
-            version = '0.0.9'
 
             from components.java
         }

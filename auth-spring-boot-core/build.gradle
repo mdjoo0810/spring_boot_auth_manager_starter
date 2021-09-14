@@ -18,7 +18,6 @@ publishing {
         mavenJava(MavenPublication) {
             groupId = 'com.github.laon-public'
             artifactId = 'auth-spring-boot-core'
-            version = '0.0.9'
 
             from components.java
         }

@@ -14,7 +14,6 @@ publishing {
         mavenJava(MavenPublication) {
             groupId = 'com.github.laon-public'
             artifactId = 'auth-spring-boot-jwt-starter'
-            version = '0.0.9'
 
             from components.java
         }
